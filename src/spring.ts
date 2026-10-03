@@ -25,7 +25,7 @@ export class Spring extends MeshRope {
   ) {
     const point_1 = position.clone();
     const point_2 = new Point(
-      position.x + Math.random() * 200,
+      position.x + (Math.random() - 0.5) * 20,
       position.y + config.rest_length,
     );
 
@@ -38,7 +38,7 @@ export class Spring extends MeshRope {
     this.point_1 = point_1;
     this.point_1_vel = { x: 0, y: 0 };
     this.point_2 = point_2;
-    this.point_2_vel = { x: 0, y: Math.random() * 10 };
+    this.point_2_vel = { x: 0, y: 0 };
     this.k = config.stiffness;
     this.damping = config.resistance;
     this.rest_length = config.rest_length;
