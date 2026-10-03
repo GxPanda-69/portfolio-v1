@@ -12,14 +12,14 @@ import { Spring } from "./spring";
   document.getElementById("pixi-container")!.appendChild(app.canvas);
 
   // Load the bunny texture
-  const texture = await Assets.load("/assets/bunny.png");
+  const texture = await Assets.load("/assets/rope_base.png");
 
   const spring = new Spring(
     texture,
     new Point(app.screen.width / 2, app.screen.height / 2),
     {
       rest_length: 100,
-      resistance: 1,
+      resistance: 5,
       stiffness: 1,
     },
     1,
