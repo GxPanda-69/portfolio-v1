@@ -1,7 +1,7 @@
 import { Point, Sprite, Texture } from "pixi.js";
 import { Spring } from "./spring";
 import { Vector2 } from "./math-helper";
-import { get, getConstants } from "./constants";
+import { getConstants } from "./constants";
 
 export class Card extends Sprite {
   spring: Spring;
