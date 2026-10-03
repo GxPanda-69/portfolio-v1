@@ -1,4 +1,5 @@
-import { Application, Assets, Sprite } from "pixi.js";
+import { Application, Assets, Point } from "pixi.js";
+import { Spring } from "./spring";
 
 (async () => {
   // Create a new application
@@ -13,23 +14,22 @@ import { Application, Assets, Sprite } from "pixi.js";
   // Load the bunny texture
   const texture = await Assets.load("/assets/bunny.png");
 
-  // Create a bunny Sprite
-  const bunny = new Sprite(texture);
-
-  // Center the sprite's anchor point
-  bunny.anchor.set(0.5);
-
-  // Move the sprite to the center of the screen
-  bunny.position.set(app.screen.width / 2, app.screen.height / 2);
+  const spring = new Spring(
+    texture,
+    new Point(app.screen.width / 2, app.screen.height / 2),
+    {
+      rest_length: 100,
+      resistance: 1,
+      stiffness: 1,
+    },
+    1,
+  );
 
   // Add the bunny to the stage
-  app.stage.addChild(bunny);
+  app.stage.addChild(spring);
 
   // Listen for animate update
   app.ticker.add((time) => {
-    // Just for fun, let's rotate mr rabbit a little.
-    // * Delta is 1 if running at 100% performance *
-    // * Creates frame-independent transformation *
-    bunny.rotation += 0.1 * time.deltaTime;
+    spring.update(time.deltaTime * 0.5);
   });
 })();
