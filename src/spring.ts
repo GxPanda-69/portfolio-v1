@@ -63,7 +63,7 @@ export class Spring extends MeshRope {
     // Create vector
     const direction: Vector2 =
       current_distance === 0
-        ? { x: 1, y: 0 }
+        ? { x: 0.1, y: 0 } // Arbitrary small value to prevent division by 0
         : {
             x: delta.x / current_distance,
             y: delta.y / current_distance,
