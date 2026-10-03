@@ -6,17 +6,22 @@ import { getConstants } from "./constants";
 export class Card extends Sprite {
   spring: Spring;
   distanceToSpring: number;
+  weight: number;
 
   constructor(
     texture: Texture,
     linkedSpring: Spring,
     distanceToSpring: number,
     anchorPoint: Vector2,
+    weight: number,
   ) {
     super({ texture: texture });
     super.anchor.set(anchorPoint.x, anchorPoint.y);
     this.spring = linkedSpring;
     this.distanceToSpring = distanceToSpring;
+    super.position.copyFrom(this.spring.point_2);
+    super.position.y += this.distanceToSpring;
+    this.weight = weight ? weight : 1;
   }
 
   update(deltaTime: number) {
@@ -36,6 +41,6 @@ export class Card extends Sprite {
     super.position.x += distanceToTarget * offsetNormalized.x;
     super.position.y += distanceToTarget * offsetNormalized.y;
 
-    super.position.y += getConstants().gravity;
+    super.position.y += this.weight * getConstants().gravity * deltaTime;
   }
 }

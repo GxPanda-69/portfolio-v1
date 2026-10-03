@@ -26,10 +26,16 @@ import { Card } from "./card";
     1,
   );
 
-  const card = new Card(await Assets.load("/assets/bunny.png"), spring, 50, {
-    x: 0.5,
-    y: 0.5,
-  });
+  const card = new Card(
+    await Assets.load("/assets/bunny.png"),
+    spring,
+    50,
+    {
+      x: 0.5,
+      y: 0.5,
+    },
+    2,
+  );
 
   // Add the bunny to the stage
   app.stage.addChild(spring);
