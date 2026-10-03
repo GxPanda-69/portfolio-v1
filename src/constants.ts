@@ -1,5 +1,5 @@
-export function get() {
+export function getConstants() {
   return {
-    gravity: 1,
+    gravity: 0.5,
   };
 }

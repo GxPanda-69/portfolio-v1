@@ -1,10 +1,6 @@
 import { MeshRope, Point, Texture } from "pixi.js";
-import { get } from "./constants";
-
-interface Vector2 {
-  x: number;
-  y: number;
-}
+import { getConstants } from "./constants";
+import { Vector2 } from "./math-helper";
 
 interface SpringConfig {
   rest_length: number;
@@ -29,7 +25,7 @@ export class Spring extends MeshRope {
   ) {
     const point_1 = position.clone();
     const point_2 = new Point(
-      position.x + Math.random() * 20,
+      position.x + Math.random() * 200,
       position.y + config.rest_length,
     );
 
@@ -42,7 +38,7 @@ export class Spring extends MeshRope {
     this.point_1 = point_1;
     this.point_1_vel = { x: 0, y: 0 };
     this.point_2 = point_2;
-    this.point_2_vel = { x: 0, y: 0 };
+    this.point_2_vel = { x: 0, y: Math.random() * 10 };
     this.k = config.stiffness;
     this.damping = config.resistance;
     this.rest_length = config.rest_length;
@@ -86,7 +82,7 @@ export class Spring extends MeshRope {
     };
 
     this.point_2_vel.x += force.x * deltaTime;
-    this.point_2_vel.y += force.y * deltaTime + get().gravity;
+    this.point_2_vel.y += force.y * deltaTime + getConstants().gravity;
 
     this.point_2.x += this.point_2_vel.x * deltaTime;
     this.point_2.y += this.point_2_vel.y * deltaTime;
