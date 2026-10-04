@@ -48,6 +48,8 @@ export class Spring extends MeshRope {
   private clampLength() {
     const maxLength = getConstants().maxSpringLength;
 
+    if (maxLength < 0) return;
+
     const delta: Vector2 = {
       x: this.point_2.x - this.point_1.x,
       y: this.point_2.y - this.point_1.y,
