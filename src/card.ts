@@ -11,6 +11,7 @@ export class Card extends Sprite {
   spring: Spring;
   distanceToSpring: number;
   weight: number;
+  dragging: boolean = false;
 
   constructor(
     texture: Texture,
@@ -27,9 +28,33 @@ export class Card extends Sprite {
     super.position.copyFrom(this.spring.point_2);
     super.position.y += this.distanceToSpring;
     this.weight = weight ? weight : 1;
+
+    this.eventMode = "static";
+
+    this.on("pointerdown", (event) => {
+      this.dragging = true;
+    });
+    this.on("pointerup", (event) => {
+      this.dragging = false;
+    });
+    this.on("pointerupoutside", (event) => {
+      this.dragging = false;
+    });
+    this.on("globalmousemove", (event) => {
+      if (this.dragging) {
+        this.position = event.client;
+        this.spring.point_2.copyFrom(event.client);
+      }
+    });
   }
 
   update(deltaTime: number) {
+    if (this.dragging) {
+      this.spring.point_2.copyFrom(this.position);
+      this.spring.point_2_vel = { x: 0, y: 0 };
+      return;
+    }
+
     super.position.y += this.weight * getConstants().gravity * deltaTime;
 
     const offset: Vector2 = {
@@ -50,7 +75,7 @@ export class Card extends Sprite {
     );
     this.rotation += difference;
 
-    super.position.x += distanceToTarget * offsetNormalized.x;
-    super.position.y += distanceToTarget * offsetNormalized.y;
+    this.position.x += distanceToTarget * offsetNormalized.x;
+    this.position.y += distanceToTarget * offsetNormalized.y;
   }
 }
