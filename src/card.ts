@@ -30,6 +30,8 @@ export class Card extends Sprite {
   }
 
   update(deltaTime: number) {
+    super.position.y += this.weight * getConstants().gravity * deltaTime;
+
     const offset: Vector2 = {
       x: this.spring.point_2.x - super.position.x,
       y: this.spring.point_2.y - super.position.y,
@@ -50,7 +52,5 @@ export class Card extends Sprite {
 
     super.position.x += distanceToTarget * offsetNormalized.x;
     super.position.y += distanceToTarget * offsetNormalized.y;
-
-    super.position.y += this.weight * getConstants().gravity * deltaTime;
   }
 }
