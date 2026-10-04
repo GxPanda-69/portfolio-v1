@@ -31,15 +31,15 @@ export class Card extends Sprite {
 
     this.eventMode = "static";
 
-    this.on("pointerdown", (event) => {
+    this.on("pointerdown", (_event) => {
       this.dragging = true;
       this.spring.dragging = true;
     });
-    this.on("pointerup", (event) => {
+    this.on("pointerup", (_event) => {
       this.dragging = false;
       this.spring.dragging = false;
     });
-    this.on("pointerupoutside", (event) => {
+    this.on("pointerupoutside", (_event) => {
       this.dragging = false;
       this.spring.dragging = false;
     });
