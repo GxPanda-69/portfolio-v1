@@ -28,9 +28,9 @@ import { getConstants } from "./constants";
   );
 
   const card = new Card(
-    await Assets.load("/assets/bunny.png"),
+    await Assets.load("/assets/card_about_me.png"),
     spring,
-    50,
+    100,
     {
       x: 0.5,
       y: 0.5,
@@ -48,7 +48,5 @@ import { getConstants } from "./constants";
 
     spring.update(dt);
     card.update(dt);
-
-    console.log(spring.getLength());
   });
 })();
