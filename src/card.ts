@@ -36,7 +36,12 @@ export class Card extends Sprite {
     };
     const distanceToTarget = offsetMagnitude - this.distanceToSpring;
 
-    super.rotation = Math.atan(offset.y / offset.x);
+    const targetRotation = Math.atan2(offset.y, offset.x) + Math.PI / 2;
+    const difference = Math.atan2(
+      Math.sin(targetRotation - this.rotation),
+      Math.cos(targetRotation - this.rotation),
+    );
+    this.rotation += difference;
 
     super.position.x += distanceToTarget * offsetNormalized.x;
     super.position.y += distanceToTarget * offsetNormalized.y;
