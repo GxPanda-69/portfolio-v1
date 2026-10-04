@@ -3,6 +3,10 @@ import { Spring } from "./spring";
 import { Vector2 } from "./math-helper";
 import { getConstants } from "./constants";
 
+interface SpriteParameters {
+  scale: number;
+}
+
 export class Card extends Sprite {
   spring: Spring;
   distanceToSpring: number;
@@ -14,8 +18,9 @@ export class Card extends Sprite {
     distanceToSpring: number,
     anchorPoint: Vector2,
     weight: number,
+    spriteParameters?: SpriteParameters,
   ) {
-    super({ texture: texture });
+    super({ texture: texture, scale: spriteParameters?.scale });
     super.anchor.set(anchorPoint.x, anchorPoint.y);
     this.spring = linkedSpring;
     this.distanceToSpring = distanceToSpring;
