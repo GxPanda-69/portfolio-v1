@@ -26,7 +26,7 @@ export class Spring extends MeshRope {
     const point_1 = position.clone();
     const point_2 = new Point(
       position.x + (Math.random() - 0.5) * 20,
-      position.y + config.rest_length,
+      position.y + config.rest_length * 0.25,
     );
 
     super({
@@ -44,48 +44,70 @@ export class Spring extends MeshRope {
     this.rest_length = config.rest_length;
   }
 
+  private clampLength() {
+    const maxLength = getConstants().maxSpringLength;
+
+    const delta: Vector2 = {
+      x: this.point_2.x - this.point_1.x,
+      y: this.point_2.y - this.point_1.y,
+    };
+    const currentDistance = Math.sqrt(delta.x ** 2 + delta.y ** 2);
+
+    if (currentDistance > maxLength) {
+      const normalizedDelta: Vector2 = {
+        x: delta.x / currentDistance,
+        y: delta.y / currentDistance,
+      };
+      this.point_2.set(
+        this.point_1.x + normalizedDelta.x * maxLength,
+        this.point_1.y + normalizedDelta.y * maxLength,
+      );
+    }
+  }
+
   update(deltaTime: number) {
     // Get distance between point1 & point2
     const delta: Vector2 = {
       x: this.point_2.x - this.point_1.x,
       y: this.point_2.y - this.point_1.y,
     };
-    const current_distance = Math.sqrt(delta.x ** 2 + delta.y ** 2);
+    const currentDistance = Math.sqrt(delta.x ** 2 + delta.y ** 2);
 
     // Calculate spring force magnitude
-    const displacement = current_distance - this.rest_length;
-    const spring_force_magnitude = -this.k * displacement;
+    const displacement = currentDistance - this.rest_length;
+    const springForceMagnitude = -this.k * displacement;
 
     // Create vector
     const direction: Vector2 =
-      current_distance === 0
+      currentDistance === 0
         ? { x: 0.1, y: 0 } // Arbitrary small value to prevent division by 0
         : {
-            x: delta.x / current_distance,
-            y: delta.y / current_distance,
+            x: delta.x / currentDistance,
+            y: delta.y / currentDistance,
           };
 
     // Damping
-    const relative_vel: Vector2 = {
+    const relativeVel: Vector2 = {
       x: this.point_2_vel.x - this.point_1_vel.x,
       y: this.point_2_vel.y - this.point_1_vel.y,
     };
-    const damping_force_magnitude =
+    const dampingForceMagnitude =
       this.damping *
-      (relative_vel.x * direction.x + relative_vel.y * direction.y);
+      (relativeVel.x * direction.x + relativeVel.y * direction.y);
 
-    const total_force_magnitude =
-      spring_force_magnitude - damping_force_magnitude;
+    const totalForceMagnitude = springForceMagnitude - dampingForceMagnitude;
     const force: Vector2 = {
-      x: direction.x * total_force_magnitude,
-      y: direction.y * total_force_magnitude,
+      x: direction.x * totalForceMagnitude,
+      y: direction.y * totalForceMagnitude,
     };
 
     this.point_2_vel.x += force.x * deltaTime;
-    this.point_2_vel.y += force.y * deltaTime + getConstants().gravity;
+    this.point_2_vel.y += (force.y + getConstants().gravity) * deltaTime;
 
     this.point_2.x += this.point_2_vel.x * deltaTime;
     this.point_2.y += this.point_2_vel.y * deltaTime;
+
+    this.clampLength();
   }
 
   getLength() {
@@ -93,8 +115,8 @@ export class Spring extends MeshRope {
       x: this.point_2.x - this.point_1.x,
       y: this.point_2.y - this.point_1.y,
     };
-    const current_distance = Math.sqrt(delta.x ** 2 + delta.y ** 2);
+    const currentDistance = Math.sqrt(delta.x ** 2 + delta.y ** 2);
 
-    return current_distance;
+    return currentDistance;
   }
 }
