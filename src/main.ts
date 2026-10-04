@@ -1,6 +1,7 @@
 import { Application, Assets, Point } from "pixi.js";
 import { Spring } from "./spring";
 import { Card } from "./card";
+import { getConstants } from "./constants";
 
 (async () => {
   // Create a new application
@@ -20,8 +21,8 @@ import { Card } from "./card";
     new Point(app.screen.width / 2, app.screen.height / 2),
     {
       rest_length: 100,
-      resistance: 5,
-      stiffness: 1,
+      resistance: 0.1,
+      stiffness: 0.01,
     },
     1,
   );
@@ -34,7 +35,7 @@ import { Card } from "./card";
       x: 0.5,
       y: 0.5,
     },
-    2,
+    10,
   );
 
   // Add the bunny to the stage
@@ -43,7 +44,11 @@ import { Card } from "./card";
 
   // Listen for animate update
   app.ticker.add((time) => {
-    spring.update(time.deltaTime);
-    card.update(time.deltaTime);
+    const dt = time.deltaTime * getConstants().timeScale;
+
+    spring.update(dt);
+    card.update(dt);
+
+    console.log(spring.getLength());
   });
 })();
