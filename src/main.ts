@@ -3,6 +3,8 @@ import { Spring } from "./spring";
 import { Card } from "./card";
 import { getConstants } from "./constants";
 
+const TAGS_SPACING = 200;
+
 (async () => {
   // Create a new application
   const app = new Application();
@@ -19,7 +21,7 @@ import { getConstants } from "./constants";
   const springs: Spring[] = [
     new Spring(
       texture,
-      new Point((app.screen.width / 3) * 1, 0),
+      new Point(app.screen.width / 2 + -100, 0),
       {
         rest_length: 50 + Math.random() * 50,
         resistance: 0.1,
@@ -29,7 +31,7 @@ import { getConstants } from "./constants";
     ),
     new Spring(
       texture,
-      new Point((app.screen.width / 3) * 2, 0),
+      new Point(app.screen.width / 2 + 100, 0),
       {
         rest_length: 50 + Math.random() * 50,
         resistance: 0.1,
@@ -80,10 +82,12 @@ import { getConstants } from "./constants";
   app.ticker.add((time) => {
     const dt = time.deltaTime * getConstants().timeScale;
 
-    springs.forEach((spring) => {
+    springs.forEach((spring, idx) => {
+      spring.point_1.x =
+        (idx - (springs.length - 1) / 2) * TAGS_SPACING + app.screen.width / 2;
       spring.update(dt);
     });
-    cards.forEach((card) => {
+    cards.forEach((card, _idx) => {
       card.update(dt);
     });
   });
