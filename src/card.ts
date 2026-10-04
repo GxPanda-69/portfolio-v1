@@ -1,4 +1,4 @@
-import { Point, Sprite, Texture } from "pixi.js";
+import { Sprite, Texture } from "pixi.js";
 import { Spring } from "./spring";
 import { Vector2 } from "./math-helper";
 import { getConstants } from "./constants";
