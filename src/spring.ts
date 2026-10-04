@@ -16,6 +16,7 @@ export class Spring extends MeshRope {
   k: number;
   damping: number;
   rest_length: number;
+  dragging: boolean = false;
 
   constructor(
     texture: Texture,
