@@ -18,7 +18,7 @@ import { getConstants } from "./constants";
 
   const spring = new Spring(
     texture,
-    new Point(app.screen.width / 2, app.screen.height / 2),
+    new Point(app.screen.width / 2, 0),
     {
       rest_length: 100,
       resistance: 0.1,
@@ -30,12 +30,12 @@ import { getConstants } from "./constants";
   const card = new Card(
     await Assets.load("/assets/card_about_me.png"),
     spring,
-    100,
+    40,
     {
       x: 0.5,
-      y: 0.5,
+      y: 0.3,
     },
-    10,
+    20,
   );
 
   // Add the bunny to the stage
