@@ -21,7 +21,7 @@ import { getConstants } from "./constants";
       texture,
       new Point((app.screen.width / 3) * 1, 0),
       {
-        rest_length: 75 + Math.random() * 50,
+        rest_length: 50 + Math.random() * 50,
         resistance: 0.1,
         stiffness: 0.01,
       },
@@ -31,7 +31,7 @@ import { getConstants } from "./constants";
       texture,
       new Point((app.screen.width / 3) * 2, 0),
       {
-        rest_length: 75 + Math.random() * 50,
+        rest_length: 50 + Math.random() * 50,
         resistance: 0.1,
         stiffness: 0.01,
       },
