@@ -1,0 +1,325 @@
+body {
+  background-image: url(assets/frutiger/images/skyboxes_35.png);
+  background-size: cover;
+
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+h1 {
+  font-weight: normal;
+}
+
+a {
+  color: white;
+  opacity: 70%;
+}
+
+button {
+  margin: auto;
+  padding: 5px;
+
+  font-family: monospace;
+  color: white;
+
+  text-align: center;
+
+  background: #1a2024;
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(26, 32, 36, 0.9) 0%,
+    rgba(0, 0, 0, 0.68) 34%,
+    rgba(186, 186, 186, 0.89) 100%
+  );
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(26, 32, 36, 0.9) 0%,
+    rgba(0, 0, 0, 0.68) 34%,
+    rgba(186, 186, 186, 0.89) 100%
+  );
+  background: linear-gradient(
+    0deg,
+    rgba(26, 32, 36, 0.9) 0%,
+    rgba(0, 0, 0, 0.68) 34%,
+    rgba(186, 186, 186, 0.89) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1A2024", endColorstr="#BABABA", GradientType=0);
+
+  border: 1px solid #c6d1d890;
+  border-radius: 4px;
+}
+
+button:active {
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(186, 186, 186, 0.89) 0%,
+    rgba(0, 0, 0, 0.68) 66%,
+    rgba(26, 32, 36, 0.9) 100%
+  );
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(186, 186, 186, 0.89) 0%,
+    rgba(0, 0, 0, 0.68) 66%,
+    rgba(26, 32, 36, 0.9) 100%
+  );
+  background: linear-gradient(
+    0deg,
+    rgba(186, 186, 186, 0.89) 0%,
+    rgba(0, 0, 0, 0.68) 66%,
+    rgba(26, 32, 36, 0.9) 100%
+  );
+}
+
+.blue_button {
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(35, 55, 78, 0.9) 0%,
+    rgba(18, 84, 88, 0.68) 34%,
+    rgba(121, 174, 243, 0.89) 100%
+  );
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(35, 55, 78, 0.9) 0%,
+    rgba(18, 84, 88, 0.68) 34%,
+    rgba(121, 174, 243, 0.89) 100%
+  );
+  background: linear-gradient(
+    0deg,
+    rgba(35, 55, 78, 0.9) 0%,
+    rgba(18, 84, 88, 0.68) 34%,
+    rgba(121, 174, 243, 0.89) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1A2024", endColorstr="#858585", GradientType=0);
+}
+
+.blue_button:active {
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(121, 174, 243, 0.89) 0%,
+    rgba(18, 84, 88, 0.68) 66%,
+    rgba(35, 55, 78, 0.9) 100%
+  );
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(121, 174, 243, 0.89) 0%,
+    rgba(18, 84, 88, 0.68) 66%,
+    rgba(35, 55, 78, 0.9) 100%
+  );
+  background: linear-gradient(
+    0deg,
+    rgba(121, 174, 243, 0.89) 0%,
+    rgba(18, 84, 88, 0.68) 66%,
+    rgba(35, 55, 78, 0.9) 100%
+  );
+}
+
+.full-opacity {
+  opacity: 100%;
+}
+
+.block {
+  background: #1a202460;
+  border: 1px solid #c6d1d890;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.website-container {
+  background: #1a202460;
+
+  backdrop-filter: blur(5px);
+
+  border-radius: 50px;
+
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 12px;
+
+  border: 1px solid #c6d1d890;
+
+  overflow: scroll;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  position: absolute;
+
+  max-height: 870px;
+  max-width: 960px;
+
+  min-height: 420px;
+}
+
+.website-spacer {
+  height: 15px;
+}
+
+.website-content {
+  display: flex;
+  padding: 15px;
+}
+
+.header {
+  background: #1a2024;
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(26, 32, 36, 0.68) 0%,
+    rgba(0, 0, 0, 0.9) 65%,
+    rgba(186, 186, 186, 1) 100%
+  );
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(26, 32, 36, 0.68) 0%,
+    rgba(0, 0, 0, 0.9) 65%,
+    rgba(186, 186, 186, 1) 100%
+  );
+  background: linear-gradient(
+    0deg,
+    rgba(26, 32, 36, 0.68) 0%,
+    rgba(0, 0, 0, 0.9) 65%,
+    rgba(186, 186, 186, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1A2024", endColorstr="#BABABA", GradientType=0);
+
+  display: flex;
+  align-items: center;
+
+  height: 100px;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 999;
+}
+
+.header-content {
+  max-height: 64px;
+  margin: 18px;
+  margin-left: 50px;
+  width: 100%;
+  display: flex;
+}
+
+#headerLogo {
+  height: 64px;
+}
+
+.header-text {
+  padding-left: 15px;
+}
+
+.header-title {
+  font-size: 32px;
+}
+
+.subtitle {
+  opacity: 75%;
+}
+
+.category-title {
+  margin: auto;
+
+  text-align: center;
+
+  background: #1a202460;
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(26, 32, 36, 0.9) 0%,
+    rgba(0, 0, 0, 0.68) 34%,
+    rgba(133, 133, 133, 0.89) 100%
+  );
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(26, 32, 36, 0.9) 0%,
+    rgba(0, 0, 0, 0.68) 34%,
+    rgba(133, 133, 133, 0.89) 100%
+  );
+  background: linear-gradient(
+    0deg,
+    rgba(26, 32, 36, 0.9) 0%,
+    rgba(0, 0, 0, 0.68) 34%,
+    rgba(133, 133, 133, 0.89) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1A2024", endColorstr="#858585", GradientType=0);
+
+  border: 1px solid #c6d1d890;
+  border-radius: 4px;
+}
+
+.section {
+  width: calc(100% - 32px);
+  margin: auto;
+  height: fit-content;
+  top: 0;
+}
+
+.index {
+  width: 200px;
+  padding: 7px;
+
+  background: #1a2024a0;
+
+  border: 1px solid #c6d1d890;
+  border-radius: 11px;
+
+  height: fit-content;
+
+  position: sticky;
+  top: 115px;
+}
+
+.vertical-separator {
+  background: #c6d1d85b;
+  width: 1pt;
+  margin: 5px;
+  position: sticky;
+}
+
+.float-image-left {
+  height: 150px;
+  float: left;
+  margin-right: 15px;
+}
+
+.float-image-right {
+  height: 150px;
+  float: right;
+  margin-left: 15px;
+}
+
+.center {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+  width: fit-content;
+}
+
+.icon {
+  height: 32px;
+  padding: 7px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  .index {
+    display: none;
+  }
+  .website-container {
+    border-radius: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .vertical-separator {
+    display: none;
+  }
+}
