@@ -2,6 +2,7 @@ import { Application, Assets, Point } from "pixi.js";
 import { Spring } from "./spring";
 import { Card } from "./card";
 import { getConstants } from "./constants";
+import { panelPeek, panelShow } from ".";
 
 const TAGS_SPACING = 200;
 
@@ -28,6 +29,7 @@ const TAGS_SPACING = 200;
         stiffness: 0.01,
       },
       1,
+      "about-me-panel",
     ),
     new Spring(
       texture,
@@ -38,6 +40,7 @@ const TAGS_SPACING = 200;
         stiffness: 0.01,
       },
       1,
+      "about-me-panel",
     ),
   ];
 
@@ -85,7 +88,15 @@ const TAGS_SPACING = 200;
     springs.forEach((spring, idx) => {
       spring.point_1.x =
         (idx - (springs.length - 1) / 2) * TAGS_SPACING + app.screen.width / 2;
+      spring.point_1.y =
+        document.getElementById(spring.linkedPanel)?.getBoundingClientRect()
+          .bottom || 0;
+
       spring.update(dt);
+
+      if (spring.getLength() > 400) {
+        panelShow(spring.linkedPanel);
+      }
     });
     cards.forEach((card, _idx) => {
       card.update(dt);

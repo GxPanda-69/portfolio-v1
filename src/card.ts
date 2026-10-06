@@ -2,6 +2,7 @@ import { Sprite, Texture } from "pixi.js";
 import { Spring } from "./spring";
 import { Vector2 } from "./math-helper";
 import { getConstants } from "./constants";
+import { getPanelState, panelHide, panelPeek, panelStates } from ".";
 
 interface SpriteParameters {
   scale: number;
@@ -44,15 +45,21 @@ export class Card extends Sprite {
       this.spring.dragging = false;
     });
     this.on("globalmousemove", (event) => {
-      if (this.dragging) {
+      if (this.dragging && getPanelState(this.spring.linkedPanel) !== "out") {
         this.position = event.client;
         this.spring.point_2.copyFrom(event.client);
       }
     });
+    this.on("pointerenter", (_event) => {
+      panelPeek(this.spring.linkedPanel);
+    });
+    this.on("pointerleave", (_event) => {
+      panelHide(this.spring.linkedPanel);
+    });
   }
 
   update(deltaTime: number) {
-    if (this.dragging) {
+    if (this.dragging && getPanelState(this.spring.linkedPanel) !== "out") {
       this.spring.point_2.copyFrom(this.position);
       this.spring.point_2_vel = { x: 0, y: 0 };
       return;

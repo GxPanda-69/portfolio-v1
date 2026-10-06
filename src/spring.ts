@@ -17,12 +17,14 @@ export class Spring extends MeshRope {
   damping: number;
   rest_length: number;
   dragging: boolean = false;
+  linkedPanel: string;
 
   constructor(
     texture: Texture,
     position: Point,
     config: SpringConfig,
     width: number,
+    linkedPanel: string,
   ) {
     const point_1 = position.clone();
     const point_2 = new Point(
@@ -43,6 +45,7 @@ export class Spring extends MeshRope {
     this.k = config.stiffness;
     this.damping = config.resistance;
     this.rest_length = config.rest_length;
+    this.linkedPanel = linkedPanel;
   }
 
   private clampLength() {
