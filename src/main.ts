@@ -2,7 +2,7 @@ import { Application, Assets, Point } from "pixi.js";
 import { Spring } from "./spring";
 import { Card } from "./card";
 import { getConstants } from "./constants";
-import { panelPeek, panelShow } from ".";
+import { panelShow } from ".";
 
 const TAGS_SPACING = 200;
 
@@ -40,7 +40,7 @@ const TAGS_SPACING = 200;
         stiffness: 0.01,
       },
       1,
-      "about-me-panel",
+      "aston-panel",
     ),
   ];
 

@@ -18,7 +18,7 @@ const showAnimKeyframes: Keyframe[] = [
 
 const showAnimOptions: KeyframeAnimationOptions = {
   duration: 1000,
-  easing: "ease-out",
+  easing: "cubic-bezier(0.3, 0.7, 0.4, 1)",
   fill: "forwards",
 };
 

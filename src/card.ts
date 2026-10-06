@@ -2,7 +2,7 @@ import { Sprite, Texture } from "pixi.js";
 import { Spring } from "./spring";
 import { Vector2 } from "./math-helper";
 import { getConstants } from "./constants";
-import { getPanelState, panelHide, panelPeek, panelStates } from ".";
+import { getPanelState, panelHide, panelPeek } from ".";
 
 interface SpriteParameters {
   scale: number;
