@@ -22,7 +22,7 @@ const TAGS_SPACING = 200;
   const springs: Spring[] = [
     new Spring(
       texture,
-      new Point(app.screen.width / 2 + -100, 0),
+      new Point(app.screen.width / 2 + -200, 0),
       {
         rest_length: 50 + Math.random() * 50,
         resistance: 0.1,
@@ -33,7 +33,7 @@ const TAGS_SPACING = 200;
     ),
     new Spring(
       texture,
-      new Point(app.screen.width / 2 + 100, 0),
+      new Point(app.screen.width / 2 + 0, 0),
       {
         rest_length: 50 + Math.random() * 50,
         resistance: 0.1,
@@ -41,6 +41,17 @@ const TAGS_SPACING = 200;
       },
       1,
       "aston-panel",
+    ),
+    new Spring(
+      texture,
+      new Point(app.screen.width / 2 + 200, 0),
+      {
+        rest_length: 50 + Math.random() * 50,
+        resistance: 0.1,
+        stiffness: 0.01,
+      },
+      1,
+      "music-panel",
     ),
   ];
 
@@ -61,6 +72,19 @@ const TAGS_SPACING = 200;
     new Card(
       await Assets.load("/assets/card_about_me.png"),
       springs[1],
+      30,
+      {
+        x: 0.5,
+        y: 0.3,
+      },
+      20,
+      {
+        scale: 0.5,
+      },
+    ),
+    new Card(
+      await Assets.load("/assets/card_about_me.png"),
+      springs[2],
       30,
       {
         x: 0.5,
@@ -94,7 +118,7 @@ const TAGS_SPACING = 200;
 
       spring.update(dt);
 
-      if (spring.getLength() > 400) {
+      if (spring.getLength() > 400 && spring.dragging) {
         panelShow(spring.linkedPanel);
       }
     });
