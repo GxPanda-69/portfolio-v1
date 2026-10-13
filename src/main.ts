@@ -1,8 +1,9 @@
 import { Application, Assets, Point } from "pixi.js";
 import { Spring } from "./spring";
 import { Card } from "./card";
-import { getConstants } from "./constants";
+import { getConstants, setConstant } from "./constants";
 import { panelShow } from ".";
+import { Star } from "./star";
 
 const TAGS_SPACING = 200;
 
@@ -11,18 +12,21 @@ const TAGS_SPACING = 200;
   const app = new Application();
 
   // Initialize the application
-  await app.init({ background: "#1099bb", resizeTo: window });
+  await app.init({ background: "#18161d", resizeTo: window });
 
   // Append the application canvas to the document body
   document.getElementById("pixi-container")!.appendChild(app.canvas);
 
-  // Load the bunny texture
-  const texture = await Assets.load("/assets/rope_base.png");
+  const springTexture = await Assets.load("/assets/rope_base.png");
+  const starTexture = await Assets.load("/assets/star.png");
+
+  setConstant("screenWidth", app.screen.width);
+  setConstant("screenHeight", app.screen.height);
 
   const springs: Spring[] = [
     new Spring(
-      texture,
-      new Point(app.screen.width / 2 + -200, 0),
+      springTexture,
+      new Point(getConstants().screenWidth / 2 + -200, 0),
       {
         rest_length: 50 + Math.random() * 50,
         resistance: 0.1,
@@ -32,8 +36,8 @@ const TAGS_SPACING = 200;
       "about-me-panel",
     ),
     new Spring(
-      texture,
-      new Point(app.screen.width / 2 + 0, 0),
+      springTexture,
+      new Point(getConstants().screenWidth / 2 + 0, 0),
       {
         rest_length: 50 + Math.random() * 50,
         resistance: 0.1,
@@ -43,8 +47,8 @@ const TAGS_SPACING = 200;
       "aston-panel",
     ),
     new Spring(
-      texture,
-      new Point(app.screen.width / 2 + 200, 0),
+      springTexture,
+      new Point(getConstants().screenWidth / 2 + 200, 0),
       {
         rest_length: 50 + Math.random() * 50,
         resistance: 0.1,
@@ -106,12 +110,20 @@ const TAGS_SPACING = 200;
   });
 
   // Listen for animate update
+  let starTimeCounter = 0;
+
   app.ticker.add((time) => {
+    setConstant("screenWidth", app.screen.width);
+    setConstant("screenHeight", app.screen.height);
+
     const dt = time.deltaTime * getConstants().timeScale;
+
+    starTimeCounter += dt;
 
     springs.forEach((spring, idx) => {
       spring.point_1.x =
-        (idx - (springs.length - 1) / 2) * TAGS_SPACING + app.screen.width / 2;
+        (idx - (springs.length - 1) / 2) * TAGS_SPACING +
+        getConstants().screenWidth / 2;
       spring.point_1.y =
         document.getElementById(spring.linkedPanel)?.getBoundingClientRect()
           .bottom || 0;
@@ -125,5 +137,11 @@ const TAGS_SPACING = 200;
     cards.forEach((card, _idx) => {
       card.update(dt);
     });
+
+    if (starTimeCounter > (Math.random() + 1) * 10) {
+      starTimeCounter = 0;
+      const star = new Star(starTexture);
+      app.stage.addChild(star);
+    }
   });
 })();
