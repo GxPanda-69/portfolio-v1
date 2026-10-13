@@ -37,6 +37,6 @@ export class Star extends Sprite {
   }
 
   private mapScale(x: number) {
-    return -((-x + 1) ** 4) + 1;
+    return -((-x + 1) ** 2) + 1;
   }
 }
