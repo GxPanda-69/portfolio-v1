@@ -20,7 +20,7 @@ export class Star extends Sprite {
         onComplete: () => this.destroy(),
       })
       .to(this, {
-        scale: Math.random(),
+        scale: this.mapScale(Math.random()),
         alpha: Math.random(),
         duration: Math.random() * 2,
         ease: "power2.out",
@@ -34,5 +34,9 @@ export class Star extends Sprite {
         },
         "+=0.2",
       );
+  }
+
+  private mapScale(x: number) {
+    return -((-x + 1) ** 4) + 1;
   }
 }
