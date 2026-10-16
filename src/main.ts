@@ -1,4 +1,4 @@
-import { Application, Assets, Point } from "pixi.js";
+import { Application, Assets, Point, Sprite } from "pixi.js";
 import { Spring } from "./spring";
 import { Card } from "./card";
 import { getConstants, setConstant } from "./constants";
@@ -101,6 +101,10 @@ const TAGS_SPACING = 200;
     ),
   ];
 
+  const logoText = new Sprite(await Assets.load("assets/logo_text.png"));
+  logoText.anchor = 0.5;
+  logoText.zIndex = -1;
+
   // Add the bunny to the stage
   springs.forEach((spring) => {
     app.stage.addChild(spring);
@@ -108,6 +112,7 @@ const TAGS_SPACING = 200;
   cards.forEach((card) => {
     app.stage.addChild(card);
   });
+  app.stage.addChild(logoText);
 
   // Listen for animate update
   let starTimeCounter = 0;
@@ -118,8 +123,7 @@ const TAGS_SPACING = 200;
 
     const dt = time.deltaTime * getConstants().timeScale;
 
-    starTimeCounter += dt;
-
+    // Update springs
     springs.forEach((spring, idx) => {
       spring.point_1.x =
         (idx - (springs.length - 1) / 2) * TAGS_SPACING +
@@ -134,14 +138,22 @@ const TAGS_SPACING = 200;
         panelShow(spring.linkedPanel);
       }
     });
+
+    // Update cards
     cards.forEach((card, _idx) => {
       card.update(dt);
     });
 
+    // Clone the stars
+    starTimeCounter += dt;
     if (starTimeCounter > (Math.random() + 1) * 10) {
       starTimeCounter = 0;
       const star = new Star(starTexture);
       app.stage.addChild(star);
     }
+
+    // Move logo
+    logoText.position.x = getConstants().screenWidth / 2;
+    logoText.position.y = getConstants().screenHeight / 2;
   });
 })();
