@@ -36,6 +36,39 @@ const closeAnimOptions: KeyframeAnimationOptions = {
   fill: "forwards",
 };
 
+const showButtonAnimKeyframes: Keyframe[] = [
+  { opacity: "0" },
+  { opacity: "100%" },
+];
+
+const hideButtonAnimKeyframes: Keyframe[] = [
+  { opacity: "100%" },
+  { opacity: "0" },
+];
+
+const buttonAnimOptions: KeyframeAnimationOptions = {
+  duration: 500,
+  fill: "forwards",
+};
+
+function showButton() {
+  const button = document.getElementById("panel-close-button");
+  const showAnimation = button?.animate(
+    showButtonAnimKeyframes,
+    buttonAnimOptions,
+  );
+  showAnimation?.play();
+}
+
+function hideButton() {
+  const button = document.getElementById("panel-close-button");
+  const hideAnimation = button?.animate(
+    hideButtonAnimKeyframes,
+    buttonAnimOptions,
+  );
+  hideAnimation?.play();
+}
+
 export function panelPeek(panelId: string) {
   if (panelStates[panelId]) return;
 
@@ -58,6 +91,8 @@ export function panelShow(panelId: string) {
     showAnimOptions,
   );
   showAnimation?.play();
+
+  showButton();
 
   panelStates[panelId] = "out";
 }
@@ -84,6 +119,8 @@ export function panelClose(panelId: string) {
     closeAnimOptions,
   );
   hideAnimation?.play();
+
+  hideButton();
 
   panelStates[panelId] = undefined;
 }

@@ -21,7 +21,7 @@ export class Star extends Sprite {
       })
       .to(this, {
         scale: this.mapScale(Math.random()),
-        alpha: Math.random(),
+        alpha: Math.random() * 0.7,
         duration: Math.random() * 2,
         ease: "power2.out",
       })
