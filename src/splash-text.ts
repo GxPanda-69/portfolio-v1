@@ -16,6 +16,7 @@ const splashMessages: string[] = [
   "Never stop learning",
   "idk brah",
   "goddayum",
+  "`; DELETE FROM user WHERE 1 = 1;--",
 ];
 
 export function getSplashText(): string {
