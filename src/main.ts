@@ -1,4 +1,4 @@
-import { Application, Assets, Point, Sprite, Text, TextStyle } from "pixi.js";
+import { Application, Assets, Point, Sprite, Text } from "pixi.js";
 import { Spring } from "./spring";
 import { Card } from "./card";
 import { getConstants, setConstant } from "./constants";
