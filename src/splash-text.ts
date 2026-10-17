@@ -19,7 +19,30 @@ const splashMessages: string[] = [
   "`; DELETE FROM user WHERE 1 = 1;--",
 ];
 
+function isCurrentDate(
+  month: number,
+  day: number,
+  now: Date = new Date(),
+): boolean {
+  return now.getMonth() === month && now.getDate() === day;
+}
+
 export function getSplashText(): string {
+  if (
+    // Christmas
+    isCurrentDate(11, 25)
+  ) {
+    return "Merry Christmas!";
+  } // Halloween
+  else if (isCurrentDate(9, 31)) {
+    return "Trick or treats!";
+  } // Bday
+  else if (isCurrentDate(3, 3)) {
+    return "Happy birthday to me!";
+  } // Valentines
+  else if (isCurrentDate(1, 14)) {
+    return "ily <3";
+  }
   const ind: number = Math.floor(Math.random() * splashMessages.length);
   const result: string = splashMessages[ind];
   return `${result}!`;
