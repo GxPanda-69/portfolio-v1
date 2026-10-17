@@ -1,15 +1,24 @@
-import { Application, Assets, Point, Sprite } from "pixi.js";
+import { Application, Assets, Point, Sprite, Text, TextStyle } from "pixi.js";
 import { Spring } from "./spring";
 import { Card } from "./card";
 import { getConstants, setConstant } from "./constants";
 import { panelShow } from ".";
 import { Star } from "./star";
+import { getSplashText } from "./splash-text";
+import { degToRad } from "./math-helper";
 
 const TAGS_SPACING = 200;
 
 (async () => {
   // Create a new application
   const app = new Application();
+
+  await Assets.load({
+    src: "fonts/JetBrainsMono-Light.ttf",
+    data: {
+      family: "JetBrains Mono", // optional
+    },
+  });
 
   // Initialize the application
   await app.init({ background: "#18161d", resizeTo: window });
@@ -105,6 +114,17 @@ const TAGS_SPACING = 200;
   logoText.anchor = 0.5;
   logoText.zIndex = -1;
 
+  const splashText = new Text({
+    text: getSplashText(),
+    style: {
+      fill: "#e6e65a",
+      fontSize: 16,
+      fontFamily: "JetBrains Mono",
+    },
+    anchor: 0.5,
+  });
+  splashText.rotation = degToRad(-10);
+
   // Add the bunny to the stage
   springs.forEach((spring) => {
     app.stage.addChild(spring);
@@ -113,15 +133,18 @@ const TAGS_SPACING = 200;
     app.stage.addChild(card);
   });
   app.stage.addChild(logoText);
+  app.stage.addChild(splashText);
 
   // Listen for animate update
   let starTimeCounter = 0;
+  let timeCounter = 0;
 
   app.ticker.add((time) => {
     setConstant("screenWidth", app.screen.width);
     setConstant("screenHeight", app.screen.height);
 
     const dt = time.deltaTime * getConstants().timeScale;
+    timeCounter += dt;
 
     // Update springs
     springs.forEach((spring, idx) => {
@@ -152,8 +175,11 @@ const TAGS_SPACING = 200;
       app.stage.addChild(star);
     }
 
-    // Move logo
+    // Move logo & spalsh text
     logoText.position.x = getConstants().screenWidth / 2;
     logoText.position.y = getConstants().screenHeight / 2;
+    splashText.position.x = getConstants().screenWidth / 2 + 160;
+    splashText.position.y = getConstants().screenHeight / 2 + 20;
+    splashText.scale = 1 + Math.sin(timeCounter / 20) * 0.02;
   });
 })();
