@@ -1,4 +1,4 @@
-let panelStates: Record<string, "peek" | "out" | undefined> = {};
+const panelStates: Record<string, "peek" | "out" | undefined> = {};
 
 const peekingAnimKeyframes: Keyframe[] = [
   { transform: "translateY(0%)" },
