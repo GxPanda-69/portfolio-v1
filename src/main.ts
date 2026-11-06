@@ -53,7 +53,7 @@ const TAGS_SPACING = 200;
         stiffness: 0.01,
       },
       1,
-      "aston-panel",
+      "pcs-panel",
     ),
     new Spring(
       springTexture,
@@ -83,7 +83,7 @@ const TAGS_SPACING = 200;
       },
     ),
     new Card(
-      await Assets.load("/assets/card_about_me.png"),
+      await Assets.load("/assets/card_pcs_studio.png"),
       springs[1],
       30,
       {
@@ -96,7 +96,7 @@ const TAGS_SPACING = 200;
       },
     ),
     new Card(
-      await Assets.load("/assets/card_about_me.png"),
+      await Assets.load("/assets/card_music.png"),
       springs[2],
       30,
       {

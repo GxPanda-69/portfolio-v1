@@ -62,6 +62,21 @@ export class Card extends Sprite {
     if (this.dragging && getPanelState(this.spring.linkedPanel) !== "out") {
       this.spring.point_2.copyFrom(this.position);
       this.spring.point_2_vel = { x: 0, y: 0 };
+
+      const offset: Vector2 = {
+        x: this.spring.point_1.x - super.position.x,
+        y:
+          this.spring.point_1.y -
+          super.position.y +
+          getConstants().gravity * this.weight * deltaTime,
+      };
+
+      const targetRotation = Math.atan2(offset.y, offset.x) + Math.PI / 2;
+      const difference = Math.atan2(
+        Math.sin(targetRotation - this.rotation),
+        Math.cos(targetRotation - this.rotation),
+      );
+      this.rotation += (difference * deltaTime) / 5;
       return;
     }
 
