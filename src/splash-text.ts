@@ -11,12 +11,12 @@ const splashMessages: string[] = [
   "Cool people will stay",
   "There's lots of way to say the same thing",
   "Fall Seven Times, Stand Up Eight",
-  "we might be cooked gng",
+  "we might be cooked ngl",
   "Stay curious",
   "Never stop learning",
   "idk brah",
   "goddayum",
-  "`; DELETE FROM user WHERE 1 = 1;--",
+  "`; DELETE FROM user WHERE 1 = 1;-- ",
 ];
 
 function isCurrentDate(
@@ -41,7 +41,7 @@ export function getSplashText(): string {
     return "Happy birthday to me!";
   } // Valentines
   else if (isCurrentDate(1, 14)) {
-    return "ily <3";
+    return "ily 2 <3";
   }
   const ind: number = Math.floor(Math.random() * splashMessages.length);
   const result: string = splashMessages[ind];
